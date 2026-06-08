@@ -35,19 +35,22 @@ function App() {
 
   const resetVotes = () => {
     setVotes({
-      ...votes,
       good: 0,
       neutral: 0,
       bad: 0,
     });
   };
-  
-  const can = votes.good + votes.neutral + votes.bad > 0 ? true : false;
+
+  const canReset = votes.good + votes.neutral + votes.bad > 0 ? true : false;
 
   return (
     <div className={css.app}>
       <CafeInfo />
-      <VoteOptions onVote={handleVote} onReset={resetVotes} canReset={can} />
+      <VoteOptions
+        onVote={handleVote}
+        onReset={resetVotes}
+        canReset={canReset}
+      />
       {votes.good + votes.neutral + votes.bad > 0 ? (
         <VoteStats
           votes={votes}
